@@ -1,0 +1,23 @@
+micronaut:
+  application:
+    name: kubemqMicronautK8sPub
+  server:
+    netty:
+      worker:
+        threads: 100
+    cors:
+      enabled: true
+
+datasources:
+  default:
+    url: jdbc:mysql://mysql:3306/messages
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 'root'
+    dialect: MYSQL
+
+kubemq:
+  channel:
+    name: mail-queue
+  host: kubemq-cluster-grpc
+  port: 50000

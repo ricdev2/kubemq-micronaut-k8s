@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubemq-micronaut-k8s-pub
+  namespace: kubemq
+  labels:
+    app: kubemq-micronaut-k8s-pub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubemq-micronaut-k8s-pub
+  template:
+    metadata:
+      labels:
+        app: kubemq-micronaut-k8s-pub
+    spec:
+      containers:
+        - name: kubemq-micronaut-k8s-pub
+          image: ricardodev2/kubemq-micronaut-k8s-pub:1.0.0
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubemq-micronaut-k8s-pub
+  namespace: kubemq
+  labels:
+    app: kubemq-micronaut-k8s-pub
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+  selector:
+    app: kubemq-micronaut-k8s-pub
+  type: LoadBalancer

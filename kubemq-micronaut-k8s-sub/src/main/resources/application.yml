@@ -1,0 +1,19 @@
+micronaut:
+  server:
+    port: 8081
+  application:
+    name: kubemqMicronautK8sSub
+
+datasources:
+  default:
+    url: jdbc:mysql://mysql:3306/messages
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 'root'
+    dialect: MYSQL
+
+kubemq:
+  channel:
+    name: mail-queue
+  host: kubemq-cluster-grpc
+  port: 50000
